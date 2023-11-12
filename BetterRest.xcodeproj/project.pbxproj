@@ -12,6 +12,7 @@
 		70E7131C2B0142B900D9E45E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70E7131B2B0142B900D9E45E /* Assets.xcassets */; };
 		70E7131F2B0142B900D9E45E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70E7131E2B0142B900D9E45E /* Preview Assets.xcassets */; };
 		70E713282B01524900D9E45E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E713272B01524900D9E45E /* MainViewModel.swift */; };
+		70E7132A2B01587600D9E45E /* SleepCalcModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 70E713292B01587600D9E45E /* SleepCalcModel.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		70E7131B2B0142B900D9E45E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70E7131E2B0142B900D9E45E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		70E713272B01524900D9E45E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		70E713292B01587600D9E45E /* SleepCalcModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SleepCalcModel.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		70E713162B0142B800D9E45E /* BetterRest */ = {
 			isa = PBXGroup;
 			children = (
+				70E713292B01587600D9E45E /* SleepCalcModel.mlmodel */,
 				70E713262B01523800D9E45E /* ViewModels */,
 				70E713252B01522E00D9E45E /* Views */,
 				70E713172B0142B800D9E45E /* BetterRestApp.swift */,
@@ -158,6 +161,7 @@
 			files = (
 				70E7131A2B0142B800D9E45E /* MainView.swift in Sources */,
 				70E713182B0142B800D9E45E /* BetterRestApp.swift in Sources */,
+				70E7132A2B01587600D9E45E /* SleepCalcModel.mlmodel in Sources */,
 				70E713282B01524900D9E45E /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

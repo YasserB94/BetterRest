@@ -9,45 +9,84 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var vm = MainViewModel()
-
+    
     
     var body: some View {
         NavigationStack{
             VStack{
-                Text(
-                    "When would you like to wake up?"
-                )
-                    .font(.headline)
-                DatePicker(
-                    "Please enter a time",
-                    selection: $vm.wakeDate,
-                    displayedComponents: .hourAndMinute
-                )
-                    .labelsHidden()
-                Text("Howmany hours would you like to sleep?")
-                Stepper(
-                    "\(vm.amountOfSleepInHours.formatted())",
-                    value: $vm.amountOfSleepInHours,
-                    in:vm.MIN_HOURS_SLEEP...vm.MAX_HOURS_SLEEP,
-                    step:0.25
-                )
-                Text("Cups of coffee drank per day")
-                
-                Stepper(
-                    "\(vm.cupsOfCoffeeDrank) cup(s)",
-                    value:$vm.cupsOfCoffeeDrank,
-                    in:vm.MIN_CUPS_COFFEE...vm.MAX_CUPS_COFFEE
-                )
+                if vm.errorFeedback != nil {
+                 errorFeedback
+                }
+                Form{
+                    VStack(alignment: .leading,spacing:10){
+                        Text(
+                            "When would you like to wake up?"
+                        )
+                        .font(.headline)
+                        DatePicker(
+                            "Please enter a time",
+                            selection: $vm.inputWakeTime,
+                            displayedComponents: .hourAndMinute
+                        )
+                        .labelsHidden()
+                    }
+                    VStack(alignment: .leading,spacing:10){
+                        Text("Desired hours of sleep")
+                            .font(.headline)
+                        Stepper(
+                            "\(vm.inputHoursOfSleep.formatted())",
+                            value: $vm.inputHoursOfSleep,
+                            in:MainViewModel.MIN_HOURS_SLEEP...MainViewModel.MAX_HOURS_SLEEP,
+                            step:0.25
+                        )
+                    }
+                    VStack(alignment: .leading,spacing:10){
+                        Text("Coffee intake")
+                            .font(.headline)
+                        Stepper(
+                            "^[\(vm.inputCupsOfCoffeeDrank) cup](inflect:true)",
+                            value:$vm.inputCupsOfCoffeeDrank,
+                            in:MainViewModel.MIN_CUPS_COFFEE...MainViewModel.MAX_CUPS_COFFEE
+                        )
+                    }
+                }
+                predition
             }
-            .padding(.horizontal,30)
             .navigationTitle("BetterRest")
-            .toolbar {
-                Button("Resolve",action: calculateBedtime)
-            }
         }
     }
-    func calculateBedtime(){
-        print("World!")
+    
+    var predition:some View{
+        VStack(alignment: .center){
+            if let time = vm.predictedSleepTime {
+                VStack{
+                    Text("Your ideal bedtime is:")
+                    Text("\(time.formatted(date:.omitted,time:.shortened))").font(.largeTitle)
+                }
+                .padding(20)
+                .background()
+                .cornerRadius(10)
+                .shadow(radius: 1)
+            }
+        }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight:.infinity
+        )
+    }
+    
+    var errorFeedback:some View{
+            VStack{
+                HStack{
+                    Text("Oops! something went wrong")
+                    Text(vm.errorFeedback ?? "")
+                    Spacer()
+                    Button("Dismiss", action: vm.removeErrorFeedback)
+                }
+            }.padding()
+                .background(.red)
+                .cornerRadius(10)
+        
     }
 }
 
